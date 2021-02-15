@@ -86,6 +86,21 @@ code{
     word-wrap: normal;
     position: relative;
 }
+table{
+    width: 100%;
+    background-color: rgba(221, 223, 247, 0.863);
+    border-spacing: 5px;
+    /* border:2px solid white;
+    border-collapse: collapse; */
+}
+th , td{
+    background-color: rgba(160, 162, 201, 0.5);
+    border-collapse: collapse;
+    padding:15px;
+}
+td{
+    padding-left: 10px;
+}
 
 @media only screen and (max-width:815px){
 

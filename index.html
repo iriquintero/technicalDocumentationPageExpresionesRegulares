@@ -28,8 +28,8 @@
                 <p>Las expresiones regulares son patrones que se utilizan para hacer coincidir combinaciones de caracteres en cadenas. En JavaScript, las expresiones regulares también son objetos. Estos patrones se utilizan con los métodos <b>exec()</b> y <b>test()</b> de <b>RegExp</b>, y con <b>match()</b>, <b>matchAll()</b>, <b>replace()</b>, <b>replaceAll()</b>, <b>search()</b> y <b>split()</b> métodos de <b>String</b>. Este capítulo describe las expresiones regulares de JavaScript.</p>
             </article>
         </section>
-        <section class="main-section" id="Crear_una_expresion_regular">
-            <header>Crear una expresion regular</header>
+        <section class="main-section" id="Crear_una_expresión_regular">
+            <header>Crear una expresión regular</header>
             <article>
               <ul>
                 <li>Usando una expresión regular literal, que consiste en un patrón encerrado entre barras, como sigue:
@@ -116,18 +116,91 @@
                   
                   // "El valor de lastIndex es 0"</code>
                 <p>Las apariciones de /d(b+)d/g en las dos declaraciones son objetos de expresión regular diferentes y, por lo tanto, tienen valores diferentes para su propiedad lastIndex. Si necesitas acceder a las propiedades de una expresión regular creada con un iniciador de objeto, primero debes asignarla a una variable.</p>
+                <h2>Búsqueda avanzada con banderas</h2>
+                <p>Las expresiones regulares tienen seis indicadores opcionales que permiten funciones como la búsqueda global y que no distinga entre mayúsculas y minúsculas. Estos indicadores se pueden usar por separado o juntos en cualquier orden y se incluyen como parte de la expresión regular.</p>
 
+                <table>
+                  <tr>
+                    <th>Bandera</th>
+                    <th>Descripción</th>
+                    <th>Propiedad correspondiente</th>
+                  </tr>
+                  <tr>
+                    <td>g</td>
+                    <td>Búsqueda global</td>
+                    <td>RegExp.prototype.global</td>
+                  </tr>
+                  <tr>
+                    <td>i</td>
+                    <td>Búsqueda que no distingue entre mayúsculas y minúsculas.</td>
+                    <td>RegExp.prototype.ignoreCase</td>
+                  </tr>
+                  <tr>
+                    <td>m</td>
+                    <td>Búsqueda multilínea.</td>
+                    <td>RegExp.prototype.multiline</td>
+                  </tr>
+                  <tr>
+                    <td>s</td>
+                    <td>Permite que el . coincida con caracteres de nueva línea.</td>
+                    <td>RegExp.prototype.dotAll</td>
+                  </tr>
+                  <tr>
+                    <td>u</td>
+                    <td>"unicode"; tratar un patrón como una secuencia de puntos de código Unicode.</td>
+                    <td>RegExp.prototype.unicode</td>
+                  </tr>
+                  <tr>
+                    <td>y</td>
+                    <td>Realiza una búsqueda "pegajosa" que coincida a partir de la posición actual en la cadena de destino. Consulta sticky.</td>
+                    <td>RegExp.prototype.sticky</td>
+                  </tr>
+                </table>
+                <p>Para incluir una bandera con la expresión regular, usa esta sintaxis:</p>
+                <code>var re = /patrón/banderas;</code>
+                <p>o</p>
+                <code>var re = new RegExp('patrón', 'banderas');</code>
+                <p>Ten en cuenta que las banderas son parte integral de una expresión regular. No se pueden agregar ni eliminar más tarde.</p>
+                <p>Por ejemplo, re = /\w+\s/g crea una expresión regular que busca uno o más caracteres seguidos de un espacio y busca esta combinación en toda la cadena.</p>
+                <code>var re = /\w+\s/g;
+                  var str = 'fee fi fo fum';
+                  var myArray = str.match(re);
+                  console.log(myArray);
+                  
+                  // ["fee ", "fi ", "fo "]</code>
+                <p>Podrías reemplazar la línea:</p>
+                <code>var re = /\w+\s/g;</code>
+                <p>con:</p>
+                <code>var re = new RegExp('\\w+\\s', 'g');</code>
+                <p>y obtener el mismo resultado.</p>
+                <p>El comportamiento asociado con el indicador g es diferente cuando se usa el método .exec(). Los roles de "clase" y "argumento" se invierten: En el caso de .match(), la clase cadena (o tipo de datos) posee el método y la expresión regular es solo un argumento, mientras que en el caso de .exec(), es la expresión regular la que posee el método, siendo la cadena el argumento. Compara esto str.match(re) con re.exec(str). El indicador g se usa con el método .exec() para obtener una progresión iterativa.</p>
+                <code>var xArray; while(xArray = re.exec(str)) console.log(xArray);
+                  // produce:
+                  // ["fee ", index: 0, input: "fee fi fo fum"]
+                  // ["fi ", index: 4, input: "fee fi fo fum"]
+                  // ["fo ", index: 7, input: "fee fi fo fum"]</code>
+                <p>La bandera m se utiliza para especificar que una cadena de entrada de varias líneas se debe tratar como varias líneas. Si se usa el indicador m, ^ y $ coinciden al principio o al final de cualquier línea dentro de la cadena de entrada en lugar del inicio o el final de toda la cadena.</p>
             </article>
         </section>
         <section class="main-section" id="Ejemplos">
             <header>Ejemplos</header>
             <article>
-              <p></p>
+              <p>En el siguiente ejemplo, se espera que el usuario ingrese un número de teléfono. Cuando el usuario presiona el botón "Comprobar", el script verifica la validez del número. Si el número es válido (encuentra la secuencia de caracteres especificada por la expresión regular), la secuencia de comandos muestra un mensaje agradeciendo al usuario y confirmando el número. Si el número no es válido, el guión informa al usuario que el número de teléfono no es válido.</p>
+              <p>Entre paréntesis que no capturan (?:, la expresión regular busca tres caracteres numéricos \d{3} O | un paréntesis izquierdo \( seguido de tres dígitos \d{3}, seguido de un paréntesis cerrado \), (finaliza el paréntesis no capturador )), seguido de un guión, una barra diagonal o un punto decimal y cuando lo encuentre, recuerde el carácter ([-\/\.]), seguido de tres dígitos \d{3}, seguido de la coincidencia recordada de un guión, una barra diagonal o un punto decimal \1, seguida de cuatro dígitos \d{4}.</p>
+              <p>El evento Change activado cuando el usuario presiona Enter establece el valor de RegExp.input.</p>
+              <code>var re = /(?:\d{3}|\(\d{3}\))([-\/\.])\d{3}\1\d{4}/;
+                function testInfo(phoneInput) {
+                  var OK = re.exec(phoneInput.value);
+                  if (!OK) {
+                    console.error(phoneInput.value + ' isn\'t a phone number with area code!');
+                  } else {
+                    console.log('Gracias, tu número de teléfono es ' + OK[0]);}
+                } </code>
             </article>
         </section>
         <section class="main-section" id="Referencia">
             <header>Referencia</header>
-            <article><a href="https://es.reactjs.org/docs/getting-started.html" target="_blank">React</a></article>
+            <article>Para mas información ver: <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank">MDN</a></article>
         </section>
 
     </main>
