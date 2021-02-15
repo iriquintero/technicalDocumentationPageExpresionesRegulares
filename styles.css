@@ -89,9 +89,7 @@ code{
 table{
     width: 100%;
     background-color: rgba(221, 223, 247, 0.863);
-    border-spacing: 5px;
-    /* border:2px solid white;
-    border-collapse: collapse; */
+    border-spacing:8px;
 }
 th , td{
     background-color: rgba(160, 162, 201, 0.5);
@@ -100,6 +98,10 @@ th , td{
 }
 td{
     padding-left: 10px;
+}
+b{
+    background-color:rgba(227, 227, 240, 0.5) ;
+    font-weight: 400;
 }
 
 @media only screen and (max-width:815px){
@@ -141,6 +143,7 @@ td{
     }
     table{
         font-size: 0.7em;
+        border-spacing: 5px;
     }
     th, td{
         padding:5px;

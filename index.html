@@ -46,12 +46,12 @@
         <section class="main-section" id="Escribir_un_patrón_de_expresión_regular">
             <header>Escribir un patrón de expresión regular</header>
             <article>
-                <p>Un patrón de expresión regular se compone de caracteres simples, como /abc/, o una combinación de caracteres simples y especiales, como /ab*c/ o /Capítulo (\d)\.\d*/. El último ejemplo incluye paréntesis, que se utilizan como dispositivos de memoria. La coincidencia realizada con esta parte del patrón se recuerda para su uso posterior, como se describe en Uso de grupos.</p>
+                <p>Un patrón de expresión regular se compone de caracteres simples, como <b>/abc/</b>, o una combinación de caracteres simples y especiales, como <b>/ab*c/</b> o <b>/Capítulo (\d)\.\d*/</b>. El último ejemplo incluye paréntesis, que se utilizan como dispositivos de memoria. La coincidencia realizada con esta parte del patrón se recuerda para su uso posterior, como se describe en Uso de grupos.</p>
                 <p>Nota: Si ya estás familiarizado con las formas de una expresión regular, también puedes leer la hoja de referencia para una búsqueda rápida de un patrón/construcción específica.</p>
                 <h2>Usar patrones simples</h2>
-                <p>Los patrones simples se construyen con caracteres para los que deseas encontrar una coincidencia directa. Por ejemplo, el patrón /abc/ coincide con combinaciones de caracteres en cadenas solo cuando ocurre la secuencia exacta "abc" (todos los caracteres juntos y en ese orden). Tal coincidencia tendría éxito en las cadenas "Hola, ¿conoces tu abc?" y "Los últimos diseños de aviones evolucionaron a partir de slabcraft". En ambos casos, la coincidencia es con la subcadena "abc". No hay ninguna coincidencia en la cadena "Grab crab" porque aunque contiene la subcadena "ab c", no contiene la subcadena "abc" exacta.</p>
+                <p>Los patrones simples se construyen con caracteres para los que deseas encontrar una coincidencia directa. Por ejemplo, el patrón <b>/abc/</b> coincide con combinaciones de caracteres en cadenas solo cuando ocurre la secuencia exacta <b>"abc"</b> (todos los caracteres juntos y en ese orden). Tal coincidencia tendría éxito en las cadenas <b>"Hola, ¿conoces tu abc?" y "Los últimos diseños de aviones evolucionaron a partir de slabcraft"</b> . En ambos casos, la coincidencia es con la subcadena <b>"abc"</b>. No hay ninguna coincidencia en la cadena <b>"Grab crab"</b> porque aunque contiene la subcadena <b>"abc"</b>, no contiene la subcadena <b>"abc"</b> exacta.</p>
                 <h2>Usar caracteres especiales</h2>
-                <p>Cuando la búsqueda de una coincidencia requiere algo más que una coincidencia exacta, como por ejemplo buscar una o más 'b', o encontrar espacios en blanco, puedes incluir caracteres especiales en el patrón. Por ejemplo, para hacer coincidir una sola "a" seguida de cero o más "b"s seguidas de "c", usarías el patrón /ab*c/: el * después de "b" significa "0 o más apariciones del elemento anterior". En la cadena "cbbabbbbcdebc", este patrón coincidirá con la subcadena "abbbbc".</p>
+                <p>Cuando la búsqueda de una coincidencia requiere algo más que una coincidencia exacta, como por ejemplo buscar una o más 'b', o encontrar espacios en blanco, puedes incluir caracteres especiales en el patrón. Por ejemplo, para hacer coincidir una sola "a" seguida de cero o más "b" seguidas de "c", usarías el patrón <b>/ab*c/</b>: el <b>*</b> después de <b>"b"</b> significa <b>"0 o más apariciones del elemento anterior"</b>. En la cadena <b>"cbbabbbbcdebc"</b>, este patrón coincidirá con la subcadena <b>"abbbbc"</b>.</p>
                 <p>Las siguientes páginas proporcionan listas de los diferentes caracteres especiales que encajan en cada categoría, junto con descripciones y ejemplos:</p>
                 <ul>
                   <li><b>Aserciones:</b>Las aserciones incluyen límites, que indican el comienzo y el final de líneas y palabras, y otros patrones que indican de alguna manera que el reconocimiento es posible (incluidas las expresiones anticipadas, inversas y condicionales). Caracteres o construcciones: ^, $, x(?=y), x(?!y), (?<span><</span>=y)x, (?<span><</span>!y)x, \b, \B . </li>
@@ -59,12 +59,11 @@
                   <li><b>Cuantificadores:</b> Indica el número de caracteres o expresiones que deben coincidir. Caracteres o construcciones:  *, +, ?, x{n}, x{n,}, x{n,m}</li>
                   <li><b>Escapes de propiedades Unicode:</b> Distinguir según las propiedades de los caracteres Unicode, por ejemplo, letras mayúsculas y minúsculas, símbolos matemáticos y de puntuación. Caracteres o construcciones: \p{UnicodeProperty}, \P{UnicodeProperty} .</li>
                 </ul>
-
                 <h2>Escapando</h2>
-                <p>Si necesitas usar literalmente cualquiera de los caracteres especiales (en realidad buscando un "*", por ejemplo), lo debes escapar colocando una barra invertida delante de él. Por ejemplo, para buscar "a" seguido de "*" seguido de "b", usarías /a\*b/ — la barra invertida "escapa" de "*", volviéndola literal en lugar de especial.</p>
-                <p>De manera similar, si estás escribiendo un literal de expresión regular y necesitas buscar una barra inclinada ("/"), la debes escapar (de lo contrario, esta termina el patrón). Por ejemplo, para buscar la cadena "/ejemplo/" seguida de uno o más caracteres alfabéticos, usarías /\/ejemplo\/[a-z]+/i: las barras invertidas antes de cada barra, las hace literales.</p>
-                <p>Para hacer coincidir una barra invertida literal, debes escapar de la barra invertida. Por ejemplo, para encontrar la cadena "C:\" donde "C" puede ser cualquier letra, usarías /[A-Z]:\\/ — la primera barra invertida escapa a la que sigue, por lo que la expresión busca una sola barra invertida literal.</p>
-                <p>Si usas el constructor RegExp con un literal de cadena, recuerda que la barra invertida es un escape en los literales de cadena, por lo que para usarlo en la expresión regular, debes escapar en el nivel del literal de cadena. /a\*b/ y new RegExp("a\\*b") crean la misma expresión, que busca "a" seguida de un "*" literal seguido de "b".</p>
+                <p>Si necesitas usar literalmente cualquiera de los caracteres especiales (en realidad buscando un  <b>"*"</b> , por ejemplo), lo debes escapar colocando una barra invertida delante de él. Por ejemplo, para buscar <b>"a"</b>seguido de <b>*</b> seguido de <b>"b"</b>, usarías <b>/a\*b/</b> — la barra invertida "escapa" de "*", volviéndola literal en lugar de especial.</p>
+                <p>De manera similar, si estás escribiendo un literal de expresión regular y necesitas buscar una barra inclinada ("/"), la debes escapar (de lo contrario, esta termina el patrón). Por ejemplo, para buscar la cadena <b>"/ejemplo/"</b> seguida de uno o más caracteres alfabéticos, usarías <b>/\/ejemplo\/[a-z]+/i</b>: las barras invertidas antes de cada barra, las hace literales.</p>
+                <p>Para hacer coincidir una barra invertida literal, debes escapar de la barra invertida. Por ejemplo, para encontrar la cadena <b>"C:\"</b> donde "C" puede ser cualquier letra, usarías <b>/[A-Z]:\\/</b> — la primera barra invertida escapa a la que sigue, por lo que la expresión busca una sola barra invertida literal.</p>
+                <p>Si usas el constructor <b>RegExp</b> con un literal de cadena, recuerda que la barra invertida es un escape en los literales de cadena, por lo que para usarlo en la expresión regular, debes escapar en el nivel del literal de cadena. <b>/a\*b/</b> y <b>new RegExp("a\\*b")</b> crean la misma expresión, que busca "a" seguida de un "*" literal seguido de "b".</p>
                 <p>Si las cadenas de escape aún no forman parte de tu patrón, puedes agregarlas usando String.replace:</p>
                 <code>function escapeRegExp(string) {
                   return string.replace(/[.*+\-?^${}()|[\]\\]/g,'\\$&'); // $& significa toda la cadena coincidente
@@ -73,13 +72,12 @@
                 <p>¿Por qué no está integrada en JavaScript? Existe una propuesta para agregar esta función a RegExp, pero fue rechazada por TC39.</p>
                 <h2>Usando paréntesis</h2>
                 <p>Los paréntesis alrededor de cualquier parte del patrón de expresión regular hacen que se recuerde esa parte de la subcadena coincidente. Una vez reconocida, la subcadena se puede recuperar para otro uso. Consulta Grupos y rangos para obtener más detalles.</p>
-                
                 </article>
             </section>
             <section class="main-section" id="Usar_expresiones_regulares_en_JavaScript">
                 <header>Usar expresiones regulares en JavaScript</header>
             <article>
-                <p>Las expresiones regulares se utilizan con los métodos RegExp test() y exec() y con los métodos de String, match(), replace(), search() y split(). Estos métodos se explican en detalle en la referencia de JavaScript.</p>
+                <p>Las expresiones regulares se utilizan con los métodos <b>RegExp</b> <b>test()</b> y <b>exec()</b> y con los métodos de <b>String</b>, <b>match()</b>, <b>replace()</b>, <b>search()</b> y <b>split()</b>. Estos métodos se explican en detalle en la referencia de JavaScript.</p>
                 <ul>
                   <li><b>exec()</b>: Ejecuta una búsqueda por una coincidencia en una cadena. Devuelve un arreglo de información o null en una discrepancia.</li>
                   <li><b>test()</b>: Prueba una coincidencia en una cadena. Devuelve true o false.</li>
@@ -90,11 +88,11 @@
                   <li><b>replaceAll()</b>: Ejecuta una búsqueda de todas las coincidencias en una cadena y reemplaza las subcadenas coincidentes con una subcadena de reemplazo. </li>
                   <li><b>split()</b>: Utiliza una expresión regular o una cadena fija para dividir una cadena en un arreglo de subcadenas.</li>
                 </ul>
-                <p>Cuando desees saber si un patrón se encuentra en una cadena, utiliza los métodos test() o search(); para obtener más información (pero una ejecución más lenta) utiliza los métodos exec() o match(). Si usas exec() o match() y si la búsqueda tiene éxito, estos métodos devuelven un arreglo y actualizan las propiedades del objeto expresión regular asociado y también del objeto de expresión regular predefinido, el objeto RegExp. Si la búsqueda falla, el método exec() devuelve null (que coacciona a false).</p>
-                <p>En el siguiente ejemplo, el script utiliza el método exec() para encontrar una coincidencia en una cadena.</p>
+                <p>Cuando desees saber si un patrón se encuentra en una cadena, utiliza los métodos <b>test()</b>  o <b>search()</b>; para obtener más información (pero una ejecución más lenta) utiliza los métodos <b>exec()</b> o <b>match()</b>. Si usas <b>exec()</b> o <b>exec()</b> y si la búsqueda tiene éxito, estos métodos devuelven un arreglo y actualizan las propiedades del objeto expresión regular asociado y también del objeto de expresión regular predefinido, el objeto RegExp. Si la búsqueda falla, el método <b>exec()</b> devuelve <b>null</b> (que coacciona a false).</p>
+                <p>En el siguiente ejemplo, el <b>script</b> utiliza el método <b>exec()</b> para encontrar una coincidencia en una cadena.</p>
                 <code>var myRe = /d(b+)d/g;
                   var myArray = myRe.exec('cdbbdbsbz');</code>
-                <p>Si no necesitas acceder a las propiedades de la expresión regular, una forma alternativa de crear myArray es con este script:</p>
+                <p>Si no necesitas acceder a las propiedades de la expresión regular, una forma alternativa de crear <b>myArray</b> es con este script:</p>
                 <code> var myArray = /d(b+)d/g.exec('cdbbdbsbz');
     // similar a "cdbbdbsbz" .match(/d(b+)d/g); sin embargo,
     // "cdbbdbsbz" .match (/d(b+)d/g) genera Array ["dbbd"], mientras
@@ -115,7 +113,7 @@
                   console.log('El valor de lastIndex es ' + /d(b+)d/g.lastIndex);
                   
                   // "El valor de lastIndex es 0"</code>
-                <p>Las apariciones de /d(b+)d/g en las dos declaraciones son objetos de expresión regular diferentes y, por lo tanto, tienen valores diferentes para su propiedad lastIndex. Si necesitas acceder a las propiedades de una expresión regular creada con un iniciador de objeto, primero debes asignarla a una variable.</p>
+                <p>Las apariciones de <b>/d(b+)d/g</b> en las dos declaraciones son objetos de expresión regular diferentes y, por lo tanto, tienen valores diferentes para su propiedad lastIndex. Si necesitas acceder a las propiedades de una expresión regular creada con un iniciador de objeto, primero debes asignarla a una variable.</p>
                 <h2>Búsqueda avanzada con banderas</h2>
                 <p>Las expresiones regulares tienen seis indicadores opcionales que permiten funciones como la búsqueda global y que no distinga entre mayúsculas y minúsculas. Estos indicadores se pueden usar por separado o juntos en cualquier orden y se incluyen como parte de la expresión regular.</p>
 
@@ -161,7 +159,7 @@
                 <p>o</p>
                 <code>var re = new RegExp('patrón', 'banderas');</code>
                 <p>Ten en cuenta que las banderas son parte integral de una expresión regular. No se pueden agregar ni eliminar más tarde.</p>
-                <p>Por ejemplo, re = /\w+\s/g crea una expresión regular que busca uno o más caracteres seguidos de un espacio y busca esta combinación en toda la cadena.</p>
+                <p>Por ejemplo, <b>re = /\w+\s/g</b> crea una expresión regular que busca uno o más caracteres seguidos de un espacio y busca esta combinación en toda la cadena.</p>
                 <code>var re = /\w+\s/g;
                   var str = 'fee fi fo fum';
                   var myArray = str.match(re);
@@ -173,21 +171,21 @@
                 <p>con:</p>
                 <code>var re = new RegExp('\\w+\\s', 'g');</code>
                 <p>y obtener el mismo resultado.</p>
-                <p>El comportamiento asociado con el indicador g es diferente cuando se usa el método .exec(). Los roles de "clase" y "argumento" se invierten: En el caso de .match(), la clase cadena (o tipo de datos) posee el método y la expresión regular es solo un argumento, mientras que en el caso de .exec(), es la expresión regular la que posee el método, siendo la cadena el argumento. Compara esto str.match(re) con re.exec(str). El indicador g se usa con el método .exec() para obtener una progresión iterativa.</p>
+                <p>El comportamiento asociado con el indicador g es diferente cuando se usa el método <b>.exec()</b>. Los roles de "clase" y "argumento" se invierten: En el caso de <b>.match()</b>, la clase cadena (o tipo de datos) posee el método y la expresión regular es solo un argumento, mientras que en el caso de <b>.exec()</b>, es la expresión regular la que posee el método, siendo la cadena el argumento. Compara esto <b>str.match(re)</b> con <b>re.exec(str)</b>. El indicador g se usa con el método <b>.exec()</b> para obtener una progresión iterativa.</p>
                 <code>var xArray; while(xArray = re.exec(str)) console.log(xArray);
                   // produce:
                   // ["fee ", index: 0, input: "fee fi fo fum"]
                   // ["fi ", index: 4, input: "fee fi fo fum"]
                   // ["fo ", index: 7, input: "fee fi fo fum"]</code>
-                <p>La bandera m se utiliza para especificar que una cadena de entrada de varias líneas se debe tratar como varias líneas. Si se usa el indicador m, ^ y $ coinciden al principio o al final de cualquier línea dentro de la cadena de entrada en lugar del inicio o el final de toda la cadena.</p>
+                <p>La bandera m se utiliza para especificar que una cadena de entrada de varias líneas se debe tratar como varias líneas. Si se usa el indicador <b>m</b>, <b>^</b> y <b>$</b> coinciden al principio o al final de cualquier línea dentro de la cadena de entrada en lugar del inicio o el final de toda la cadena.</p>
             </article>
         </section>
         <section class="main-section" id="Ejemplos">
             <header>Ejemplos</header>
             <article>
               <p>En el siguiente ejemplo, se espera que el usuario ingrese un número de teléfono. Cuando el usuario presiona el botón "Comprobar", el script verifica la validez del número. Si el número es válido (encuentra la secuencia de caracteres especificada por la expresión regular), la secuencia de comandos muestra un mensaje agradeciendo al usuario y confirmando el número. Si el número no es válido, el guión informa al usuario que el número de teléfono no es válido.</p>
-              <p>Entre paréntesis que no capturan (?:, la expresión regular busca tres caracteres numéricos \d{3} O | un paréntesis izquierdo \( seguido de tres dígitos \d{3}, seguido de un paréntesis cerrado \), (finaliza el paréntesis no capturador )), seguido de un guión, una barra diagonal o un punto decimal y cuando lo encuentre, recuerde el carácter ([-\/\.]), seguido de tres dígitos \d{3}, seguido de la coincidencia recordada de un guión, una barra diagonal o un punto decimal \1, seguida de cuatro dígitos \d{4}.</p>
-              <p>El evento Change activado cuando el usuario presiona Enter establece el valor de RegExp.input.</p>
+              <p>Entre paréntesis que no capturan <b>(?:</b>, la expresión regular busca tres caracteres numéricos <b>\d{3}</b> O <b>|</b> un paréntesis izquierdo <b>\(</b> seguido de tres dígitos <b>\d{3}</b>, seguido de un paréntesis cerrado <b> \)</b>, (finaliza el paréntesis no capturador <b>)</b>), seguido de un guión, una barra diagonal o un punto decimal y cuando lo encuentre, recuerde el carácter <b>([-\/\.])</b>, seguido de tres dígitos <b>\d{3}</b>, seguido de la coincidencia recordada de un guión, una barra diagonal o un punto decimal <b>\1</b>, seguida de cuatro dígitos <b>\d{4}</b>.</p>
+              <p>El evento <b>Change</b> activado cuando el usuario presiona <b>Enter</b> establece el valor de <b>RegExp.input</b>.</p>
               <code>var re = /(?:\d{3}|\(\d{3}\))([-\/\.])\d{3}\1\d{4}/;
                 function testInfo(phoneInput) {
                   var OK = re.exec(phoneInput.value);
