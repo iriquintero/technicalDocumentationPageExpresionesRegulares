@@ -63,9 +63,15 @@ section article{
     color:black;
     margin: 10px;
 }
+section li{
+    margin:15px 0 0 30px;
+}
 h2{
     color:rgb(3, 10, 117) ;
     margin:10px 0;
+}
+p{
+    margin:15px 0px;
 }
 
 code{

@@ -11,21 +11,13 @@
 </head>
 <body>
     <nav id="navbar">
-        <header>React</header>
+        <header>Expresiones Regulares</header>
         <ul>
             <li><a class="nav-link" href="#Introducción">Introducción</a></li>
-            <li><a class="nav-link" href="#Hola_mundo">Hola mundo</a></li>
-            <li><a class="nav-link" href="#Presentando_JSX">Presentando JSX</a></li>
-            <li><a class="nav-link" href="#Renderizando_elementos">Renderizando elementos</a></li>
-            <li><a class="nav-link" href="#Componentes_y_propiedades">Componentes y propiedades</a></li>
-            <li><a class="nav-link" href="#Estado_y_ciclo_de_vida">Estado y ciclo de vida</a></li>
-            <li><a class="nav-link" href="#Manejando_eventos">Manejando eventos</a></li>
-            <li><a class="nav-link" href="#Renderizado_condicional">Renderizado condicional</a></li>
-            <li><a class="nav-link" href="#Listas_y_keys">Listas y keys</a></li>
-            <li><a class="nav-link" href="#Formularios">Formularios</a></li>
-            <li><a class="nav-link" href="#Levantando_el_estado">Levantando el estado</a></li>
-            <li><a class="nav-link" href="#Composición_vs._herencia">Composición vs. herencia</a></li>
-            <li><a class="nav-link" href="#Pensando_en_React">Pensando en React</a></li>
+            <li><a class="nav-link" href="#Crear_una_expresion_regular">Crear una expresion regular</a></li>
+            <li><a class="nav-link" href="#Escribir_un_patrón_de_expresión_regular">Escribir un patrón de expresión regular</a></li>
+            <li><a class="nav-link" href="#Usar_expresiones_regulares_en_JavaScript">Usar expresiones regulares en JavaScript</a></li>
+            <li><a class="nav-link" href="#Ejemplos">Ejemplos</a></li>
             <li><a class="nav-link" href="#Referencia">Referencia</a></li>
         </ul>
     </nav>
@@ -33,248 +25,104 @@
         <section class="main-section" id="Introducción">
             <header>Introducción</header>
             <article>
-                <p>React es una biblioteca Javascript para crear interfaces de usuario. Aprende todo de lo que trata React en nuestra página principal o en este tutorial.</p>
-                <p>React te ayuda a crear interfaces de usuario interactivas de forma sencilla. Diseña vistas simples para cada estado en tu aplicación, y React se encargará de actualizar y renderizar de manera eficiente los componentes correctos cuando los datos cambien.</p>
-                <p>Las vistas declarativas hacen que tu código sea más predecible, por lo tanto, fácil de depurar.</p>
-                <p>Crea componentes encapsulados que manejen su propio estado, y conviértelos en interfaces de usuario complejas.Ya que la lógica de los componentes está escrita en JavaScript y no en plantillas, puedes pasar datos de forma sencilla a través de tu aplicación y mantener el estado fuera del DOM.</p>
-                <p></p>
+                <p>Las expresiones regulares son patrones que se utilizan para hacer coincidir combinaciones de caracteres en cadenas. En JavaScript, las expresiones regulares también son objetos. Estos patrones se utilizan con los métodos <b>exec()</b> y <b>test()</b> de <b>RegExp</b>, y con <b>match()</b>, <b>matchAll()</b>, <b>replace()</b>, <b>replaceAll()</b>, <b>search()</b> y <b>split()</b> métodos de <b>String</b>. Este capítulo describe las expresiones regulares de JavaScript.</p>
             </article>
         </section>
-        <section class="main-section" id="Hola_mundo">
-            <header>Hola mundo</header>
+        <section class="main-section" id="Crear_una_expresion_regular">
+            <header>Crear una expresion regular</header>
             <article>
-                <p>El más pequeño de los ejemplos de React se ve así:</p>
-                <code>ReactDOM.render(
-                    <h1>Hello, world!</h1>,
-                    document.getElementById('root')
-                  );</code>
-                <p>Este muestra un encabezado con el texto “Hello, world!” en la página.</p>
+              <ul>
+                <li>Usando una expresión regular literal, que consiste en un patrón encerrado entre barras, como sigue:
+                  <code>let re = /ab+c/;</code>
+                  <p>Las expresiones regulares literales proporcionan la compilación de la expresión regular cuando se carga el script. Si la expresión regular permanece constante, su uso puede mejorar el rendimiento.</p>
+                </li>
+                <li>O llamando a la función constructora del objeto RegExp, de la siguiente manera:
+                  <code>let re = new RegExp('ab+c');</code>
+                  <p>El uso de la función constructora proporciona una compilación en tiempo de ejecución de la expresión regular. Usa la función constructora cuando sepas que el patrón de la expresión regular cambiará, o no conoces el patrón y lo obtienes de otra fuente, como la entrada del usuario.</p>
+                </li>
+              </ul>
             </article>
         </section>
-        <section class="main-section" id="Presentando_JSX">
-            <header>Presentando JSX</header>
+        <section class="main-section" id="Escribir_un_patrón_de_expresión_regular">
+            <header>Escribir un patrón de expresión regular</header>
             <article>
-                <p>Considera la declaración de esta variable:</p>
-                <code>const element = <h1>Hello, world!</h1>;</code>
-                <p>Esta curiosa sintaxis de etiquetas no es ni un string ni HTML.</p>
-                <p>Se llama JSX, y es una extensión de la sintaxis de JavaScript. Recomendamos usarlo con React para describir cómo debería ser la interfaz de usuario. JSX puede recordarte a un lenguaje de plantillas, pero viene con todo el poder de JavaScript.</p>
-                <p>JSX produce “elementos” de React. Exploraremos como renderizarlos en el DOM en la siguiente sección. A continuación puedes encontrar lo básico de JSX que será necesario para empezar.</p>
-                <h2>¿Por qué JSX?</h2>
-                <p>React acepta el hecho de que la lógica de renderizado está intrínsecamente unida a la lógica de la interfaz de usuario: cómo se manejan los eventos, cómo cambia el estado con el tiempo y cómo se preparan los datos para su visualización.</p>
-                <p>En lugar de separar artificialmente tecnologías poniendo el maquetado y la lógica en archivos separados, React separa intereses con unidades ligeramente acopladas llamadas “componentes” que contienen ambas. Volveremos a los componentes en otra sección, pero si aún no te sientes cómodo maquetando en JS, esta charla podría convencerte de lo contrario.</p>
-                <p>React no requiere usar JSX, pero la mayoría de la gente lo encuentra útil como ayuda visual cuando trabajan con interfaz de usuario dentro del código Javascript. Esto también permite que React muestre mensajes de error o advertencia más útiles.</p>
-                <h2>Insertando expresiones en JSX</h2>
-                <p>En el ejemplo a continuación, declaramos una variable llamada  <span>name</span> y luego la usamos dentro del JSX envolviéndola dentro de llaves:</p>
-                <code>const name = 'Josh Perez';
-                    const element = <h1>Hello, {name}</h1>;
-                    
-                    ReactDOM.render(
-                      element,
-                      document.getElementById('root')
-                    );</code>
-                <p>Puedes poner cualquier expresión de JavaScript dentro de llaves en JSX. Por ejemplo, 2 + 2, user.firstName, o formatName(user) son todas expresiones válidas de Javascript.</p>
-                <p>En el ejemplo a continuación, insertamos el resultado de llamar la función de JavaScript, formatName(user), dentro de un elemento <h1>.</p>
-                <code>function formatName(user) {
-                    return user.firstName + ' ' + user.lastName;
-                  }
-                  
-                  const user = {
-                    firstName: 'Harper',
-                    lastName: 'Perez'
-                  };
-                  
-                  const element = (
-                    <h1>
-                      Hello, {formatName(user)}!
-                    </h1>
-                  );
-                  
-                  ReactDOM.render(
-                    element,
-                    document.getElementById('root')
-                  );</code>
-                  <h2>JSX también es una expresión</h2>
-                  <p>Después de compilarse, las expresiones JSX se convierten en llamadas a funciones JavaScript regulares y se evalúan en objetos JavaScript.</p>
-                  <p>Esto significa que puedes usar JSX dentro de declaraciones <span>if</span> y bucles <span>for</span>, asignarlo a variables, aceptarlo como argumento, y retornarlo desde dentro de funciones:</p>
-                  <code>function getGreeting(user) {
-                    if (user) {
-                      return <h1>Hello, {formatName(user)}!</h1>;
-                    }
-                    return <h1>Hello, Stranger.</h1>;
-                  }</code>
-                  <h2>Especificando atributos con JSX</h2>
-                  <p>Puedes utilizar comillas para especificar strings literales como atributos:</p>
-                  <code>const element = <span><</span><span>div</span> tabIndex="0"<span>></span><span><</span><span>/</span><span>div</span><span>></span>;</code>
-                  <p>También puedes usar llaves para insertar una expresión JavaScript en un atributo:</p>
-                  <p>No pongas comillas rodeando llaves cuando insertes una expresión JavaScript en un atributo. Debes utilizar comillas (para los valores de los strings) o llaves (para las expresiones), pero no ambas en el mismo atributo.</p>
+                <p>Un patrón de expresión regular se compone de caracteres simples, como /abc/, o una combinación de caracteres simples y especiales, como /ab*c/ o /Capítulo (\d)\.\d*/. El último ejemplo incluye paréntesis, que se utilizan como dispositivos de memoria. La coincidencia realizada con esta parte del patrón se recuerda para su uso posterior, como se describe en Uso de grupos.</p>
+                <p>Nota: Si ya estás familiarizado con las formas de una expresión regular, también puedes leer la hoja de referencia para una búsqueda rápida de un patrón/construcción específica.</p>
+                <h2>Usar patrones simples</h2>
+                <p>Los patrones simples se construyen con caracteres para los que deseas encontrar una coincidencia directa. Por ejemplo, el patrón /abc/ coincide con combinaciones de caracteres en cadenas solo cuando ocurre la secuencia exacta "abc" (todos los caracteres juntos y en ese orden). Tal coincidencia tendría éxito en las cadenas "Hola, ¿conoces tu abc?" y "Los últimos diseños de aviones evolucionaron a partir de slabcraft". En ambos casos, la coincidencia es con la subcadena "abc". No hay ninguna coincidencia en la cadena "Grab crab" porque aunque contiene la subcadena "ab c", no contiene la subcadena "abc" exacta.</p>
+                <h2>Usar caracteres especiales</h2>
+                <p>Cuando la búsqueda de una coincidencia requiere algo más que una coincidencia exacta, como por ejemplo buscar una o más 'b', o encontrar espacios en blanco, puedes incluir caracteres especiales en el patrón. Por ejemplo, para hacer coincidir una sola "a" seguida de cero o más "b"s seguidas de "c", usarías el patrón /ab*c/: el * después de "b" significa "0 o más apariciones del elemento anterior". En la cadena "cbbabbbbcdebc", este patrón coincidirá con la subcadena "abbbbc".</p>
+                <p>Las siguientes páginas proporcionan listas de los diferentes caracteres especiales que encajan en cada categoría, junto con descripciones y ejemplos:</p>
+                <ul>
+                  <li><b>Aserciones:</b>Las aserciones incluyen límites, que indican el comienzo y el final de líneas y palabras, y otros patrones que indican de alguna manera que el reconocimiento es posible (incluidas las expresiones anticipadas, inversas y condicionales). Caracteres o construcciones: ^, $, x(?=y), x(?!y), (?<span><</span>=y)x, (?<span><</span>!y)x, \b, \B . </li>
+                  <li><b>Grupos y rangos:</b> Indica grupos y rangos de caracteres de expresión. Caracteres o construcciones: (x), (?:x), (?<span><</span>Name<span>></span>x), x|y, [xyz], [^xyz], \Number .</li>
+                  <li><b>Cuantificadores:</b> Indica el número de caracteres o expresiones que deben coincidir. Caracteres o construcciones:  *, +, ?, x{n}, x{n,}, x{n,m}</li>
+                  <li><b>Escapes de propiedades Unicode:</b> Distinguir según las propiedades de los caracteres Unicode, por ejemplo, letras mayúsculas y minúsculas, símbolos matemáticos y de puntuación. Caracteres o construcciones: \p{UnicodeProperty}, \P{UnicodeProperty} .</li>
+                </ul>
+
+                <h2>Escapando</h2>
+                <p>Si necesitas usar literalmente cualquiera de los caracteres especiales (en realidad buscando un "*", por ejemplo), lo debes escapar colocando una barra invertida delante de él. Por ejemplo, para buscar "a" seguido de "*" seguido de "b", usarías /a\*b/ — la barra invertida "escapa" de "*", volviéndola literal en lugar de especial.</p>
+                <p>De manera similar, si estás escribiendo un literal de expresión regular y necesitas buscar una barra inclinada ("/"), la debes escapar (de lo contrario, esta termina el patrón). Por ejemplo, para buscar la cadena "/ejemplo/" seguida de uno o más caracteres alfabéticos, usarías /\/ejemplo\/[a-z]+/i: las barras invertidas antes de cada barra, las hace literales.</p>
+                <p>Para hacer coincidir una barra invertida literal, debes escapar de la barra invertida. Por ejemplo, para encontrar la cadena "C:\" donde "C" puede ser cualquier letra, usarías /[A-Z]:\\/ — la primera barra invertida escapa a la que sigue, por lo que la expresión busca una sola barra invertida literal.</p>
+                <p>Si usas el constructor RegExp con un literal de cadena, recuerda que la barra invertida es un escape en los literales de cadena, por lo que para usarlo en la expresión regular, debes escapar en el nivel del literal de cadena. /a\*b/ y new RegExp("a\\*b") crean la misma expresión, que busca "a" seguida de un "*" literal seguido de "b".</p>
+                <p>Si las cadenas de escape aún no forman parte de tu patrón, puedes agregarlas usando String.replace:</p>
+                <code>function escapeRegExp(string) {
+                  return string.replace(/[.*+\-?^${}()|[\]\\]/g,'\\$&'); // $& significa toda la cadena coincidente
+                }</code>
+                <p>La "g" después de la expresión regular es una opción o indicador que realiza una búsqueda global, buscando en toda la cadena y devolviendo todas las coincidencias. Se explica en detalle a continuación en Búsqueda avanzada con indicadores.</p>
+                <p>¿Por qué no está integrada en JavaScript? Existe una propuesta para agregar esta función a RegExp, pero fue rechazada por TC39.</p>
+                <h2>Usando paréntesis</h2>
+                <p>Los paréntesis alrededor de cualquier parte del patrón de expresión regular hacen que se recuerde esa parte de la subcadena coincidente. Una vez reconocida, la subcadena se puede recuperar para otro uso. Consulta Grupos y rangos para obtener más detalles.</p>
+                
                 </article>
             </section>
-            <section class="main-section" id="Renderizando_elementos">
-                <header>Renderizando elementos</header>
+            <section class="main-section" id="Usar_expresiones_regulares_en_JavaScript">
+                <header>Usar expresiones regulares en JavaScript</header>
             <article>
-                <code>const element = <span><</span><span>imag</span> src={user.avatarUrl}<span>></span><span><</span><span>/</span><span>img</span><span>></span>;</code>
-                <h3>Los elementos son los bloques más pequeños de las aplicaciones de React.</h3>
-                <p>Un elemento describe lo que quieres ver en la pantalla:</p>
-                <code>const element = <h1>Hello, world</h1>;</code>
-                <p>A diferencia de los elementos del DOM de los navegadores, los elementos de React son objetos planos, y su creación es de bajo costo. React DOM se encarga de actualizar el DOM para igualar los elementos de React.</p>
-                <h2>Renderizando un elemento en el DOM</h2>
-                <p>Digamos que hay un <div> en alguna parte de tu archivo HTML:</p>
-                <code><div id="root"></div></code>
-                <p>Lo llamamos un nodo “raíz” porque todo lo que esté dentro de él será manejado por React DOM.</p>
-                <p>Las aplicaciones construidas solamente con React usualmente tienen un único nodo raíz en el DOM. Dado el caso que estés integrando React en una aplicación existente, puedes tener tantos nodos raíz del DOM aislados como quieras.</p>
-                <p>Para renderizar un elemento de React en un nodo raíz del DOM, pasa ambos a ReactDOM.render():</p>
-                <code>const element = <h1>Hello, world</h1>;
-                    ReactDOM.render(element, document.getElementById('root'));</code>
-                <h2>Actualizando el elemento renderizado</h2>
-                <p>Los elementos de React son inmutables. Una vez creas un elemento, no puedes cambiar sus hijos o atributos. Un elemento es como un fotograma solitario en una película: este representa la interfaz de usuario en cierto punto en el tiempo.</p>
-                <p>Con nuestro conocimiento hasta este punto, la única manera de actualizar la interfaz de usuario es creando un nuevo elemento, y pasarlo a ReactDOM.render().</p>
-                <p>Considera este ejemplo de un reloj en marcha:</p>
-                <code>function tick() {
-                    const element = (
-                      <div>
-                        <h1>Hello, world!</h1>
-                        <h2>It is {new Date().toLocaleTimeString()}.</h2>
-                      </div>
-                    );
-                    ReactDOM.render(element, document.getElementById('root'));
-                  }
+                <p>Las expresiones regulares se utilizan con los métodos RegExp test() y exec() y con los métodos de String, match(), replace(), search() y split(). Estos métodos se explican en detalle en la referencia de JavaScript.</p>
+                <ul>
+                  <li><b>exec()</b>: Ejecuta una búsqueda por una coincidencia en una cadena. Devuelve un arreglo de información o null en una discrepancia.</li>
+                  <li><b>test()</b>: Prueba una coincidencia en una cadena. Devuelve true o false.</li>
+                  <li><b>match()</b>: Devuelve un arreglo que contiene todas las coincidencias, incluidos los grupos de captura, o null si no se encuentra ninguna coincidencia. </li>
+                  <li><b>matchAll()</b>: Devuelve un iterador que contiene todas las coincidencias, incluidos los grupos de captura. </li>
+                  <li><b>search()</b>: Prueba una coincidencia en una cadena. Devuelve el índice de la coincidencia, o -1 si la búsqueda falla. </li>
+                  <li><b>replace()</b>: Ejecuta una búsqueda por una coincidencia en una cadena y reemplaza la subcadena coincidente con una subcadena de reemplazo.</li>
+                  <li><b>replaceAll()</b>: Ejecuta una búsqueda de todas las coincidencias en una cadena y reemplaza las subcadenas coincidentes con una subcadena de reemplazo. </li>
+                  <li><b>split()</b>: Utiliza una expresión regular o una cadena fija para dividir una cadena en un arreglo de subcadenas.</li>
+                </ul>
+                <p>Cuando desees saber si un patrón se encuentra en una cadena, utiliza los métodos test() o search(); para obtener más información (pero una ejecución más lenta) utiliza los métodos exec() o match(). Si usas exec() o match() y si la búsqueda tiene éxito, estos métodos devuelven un arreglo y actualizan las propiedades del objeto expresión regular asociado y también del objeto de expresión regular predefinido, el objeto RegExp. Si la búsqueda falla, el método exec() devuelve null (que coacciona a false).</p>
+                <p>En el siguiente ejemplo, el script utiliza el método exec() para encontrar una coincidencia en una cadena.</p>
+                <code>var myRe = /d(b+)d/g;
+                  var myArray = myRe.exec('cdbbdbsbz');</code>
+                <p>Si no necesitas acceder a las propiedades de la expresión regular, una forma alternativa de crear myArray es con este script:</p>
+                <code> var myArray = /d(b+)d/g.exec('cdbbdbsbz');
+    // similar a "cdbbdbsbz" .match(/d(b+)d/g); sin embargo,
+    // "cdbbdbsbz" .match (/d(b+)d/g) genera Array ["dbbd"], mientras
+    // /d(b+)d/g.exec('cdbbdbsbz ') produce Array ['dbbd', 'bb', index: 1, input: 'cdbbdbsbz' ].
+                </code>
+                <p>(Consulta diferentes comportamientos para obtener más información sobre los diferentes comportamientos).</p>
+                <p>Si deseas construir la expresión regular a partir de una cadena, otra alternativa más es este script:</p>
+                <code>var myRe = new RegExp('d(b+)d', 'g');
+                  var myArray = myRe.exec('cdbbdbsbz');</code>
+                <p>Como se muestra en la segunda forma de este ejemplo, puedes usar una expresión regular creada con un iniciador de objeto sin asignarla a una variable. Sin embargo, si lo hace, cada aparición es una nueva expresión regular. Por este motivo, si utilizas esta forma sin asignarla a una variable, no podrás acceder posteriormente a las propiedades de esa expresión regular. Por ejemplo, supongamos que tienes este script:</p>
+                <code>var myRe = /d(b+)d/g;
+                  var myArray = myRe.exec('cdbbdbsbz');
+                  console.log('El valor de lastIndex es ' + myRe.lastIndex);
                   
-                  setInterval(tick, 1000);</code>
-            </article>
-        </section>
-        <section class="main-section" id="Componentes_y_propiedades">
-            <header>Componentes y propiedades</header>
-            <article>
-                <p>Los componentes permiten separar la interfaz de usuario en piezas independientes, reutilizables y pensar en cada pieza de forma aislada. Esta página proporciona una introducción a la idea de los componentes. Puedes encontrar una API detallada sobre componentes aquí.</p>
-                <p>Conceptualmente, los componentes son como las funciones de JavaScript. Aceptan entradas arbitrarias (llamadas “props”) y devuelven a React elementos que describen lo que debe aparecer en la pantalla.</p>
-                <h2>Componentes funcionales y de clase</h2>
-                <p>La forma más sencilla de definir un componente es escribir una función de JavaScript:</p>
-                <code>function Welcome(props) {
-                    return <h1>Hello, {props.name}</h1>;
-                  }</code>
-                <p>Esta función es un componente de React válido porque acepta un solo argumento de objeto “props” (que proviene de propiedades) con datos y devuelve un elemento de React. Llamamos a dichos componentes “funcionales” porque literalmente son funciones JavaScript.También puedes utilizar una clase de ES6 para definir un componente:</p>
-                <code>class Welcome extends React.Component {
-                    render() {
-                      return <h1>Hello, {this.props.name}</h1>;
-                    }
-                  }</code>
-                <p>Los dos componentes anteriores son equivalentes desde el punto de vista de React.Tanto los componentes de función como de clase tienen algunas características adicionales que veremos en las próximas secciones.</p>
-                <h2>Renderizando un componente</h2>
-                <p>Anteriormente, sólo encontramos elementos de React que representan las etiquetas del DOM:</p>
-                <code>const element = <div />;</code>
-                <p>Sin embargo, los elementos también pueden representar componentes definidos por el usuario:</p>
-                <code>const element = <Welcome name="Sara" />;</code>
-                <p>Cuando React ve un elemento representando un componente definido por el usuario, pasa atributos JSX e hijos a este componente como un solo objeto. Llamamos a este objeto “props”.</p>
-                <p>Por ejemplo, este código muestra “Hello, Sara” en la página:</p>
-                <code>function Welcome(props) {
-                    return <h1>Hello, {props.name}</h1>;
-                  }
+                  // "El valor de lastIndex es 5"</code>
+                <p>Sin embargo, si tienes este script:</p>
+                <code>var myArray = /d(b+)d/g.exec('cdbbdbsbz');
+                  console.log('El valor de lastIndex es ' + /d(b+)d/g.lastIndex);
                   
-                  const element = <Welcome name="Sara" />;
-                  ReactDOM.render(
-                    element,
-                    document.getElementById('root')
-                  );</code>
-                <p>Recapitulemos lo que sucede en este ejemplo:</p>
-                <ol>
-                    <li>Llamamos a ReactDOM.render() con el elemento <Welcome name="Sara" />.</li>
-                    <li>React llama al componente Welcome con {name: 'Sara'} como “props”.</li>
-                    <li>Nuestro componente Welcome devuelve un elemento <h1>Hello, Sara</h1> como resultado.</li>
-                    <li>React DOM actualiza eficientemente el DOM para que coincida con <h1>Hello, Sara</h1>.</li>
-                </ol>
-                <h2>Composición de componentes</h2>
-                <p>Los componentes pueden referirse a otros componentes en su salida. Esto nos permite utilizar la misma abstracción de componente para cualquier nivel de detalle. Un botón, un cuadro de diálogo, un formulario, una pantalla: en aplicaciones de React, todos son expresados comúnmente como componentes.</p>
-                <p>Por ejemplo, podemos crear un componente App que renderiza Welcome muchas veces:</p>
-                <code>function Welcome(props) {
-                    return <h1>Hello, {props.name}</h1>;
-                  }
-                  
-                  function App() {
-                    return (
-                      <div>
-                        <Welcome name="Sara" />
-                        <Welcome name="Cahal" />
-                        <Welcome name="Edite" />
-                      </div>
-                    );
-                  }
-                  
-                  ReactDOM.render(
-                    <App />,
-                    document.getElementById('root')
-                  );</code>
-                <p>Por lo general, las aplicaciones de React nuevas tienen un único componente App en lo más alto. Sin embargo, si se integra React en una aplicación existente, se podría empezar de abajo hacia arriba con un pequeño componente como Button y poco a poco trabajar el camino a la cima de la jerarquía de la vista.</p>
-                <h2>Extracción de componentes</h2>
-                <p>Por ejemplo, considera este componente Comment:</p>
-                <code>function Comment(props) {
-                    return (
-                      <div className="Comment">
-                        <div className="UserInfo">
-                          <img className="Avatar"
-                            src={props.author.avatarUrl}
-                            alt={props.author.name}
-                          />
-                          <div className="UserInfo-name">
-                            {props.author.name}
-                          </div>
-                        </div>
-                        <div className="Comment-text">
-                          {props.text}
-                        </div>
-                        <div className="Comment-date">
-                          {formatDate(props.date)}
-                        </div>
-                      </div>
-                    );
-                  }</code>
+                  // "El valor de lastIndex es 0"</code>
+                <p>Las apariciones de /d(b+)d/g en las dos declaraciones son objetos de expresión regular diferentes y, por lo tanto, tienen valores diferentes para su propiedad lastIndex. Si necesitas acceder a las propiedades de una expresión regular creada con un iniciador de objeto, primero debes asignarla a una variable.</p>
+
             </article>
         </section>
-        <section class="main-section" id="Estado_y_ciclo_de_vida">
-            <header>Estado y ciclo de vida</header>
+        <section class="main-section" id="Ejemplos">
+            <header>Ejemplos</header>
             <article>
-                <p></p>
-            </article>
-        </section>
-        <section class="main-section" id="Manejando_eventos">
-            <header>Manejando eventos</header>
-            <article>
-                <p></p>
-            </article>
-        </section>
-        <section class="main-section" id="Renderizado_condicional">
-            <header>Renderizado condicional</header>
-            <article>
-                <p></p>
-            </article>
-        </section>
-        <section class="main-section" id="Listas_y_keys">
-            <header>Listas y keys</header>
-            <article>
-                <p></p>
-            </article>
-        </section>
-        <section class="main-section" id="Formularios">
-            <header>Formularios</header>
-            <article>
-                <p></p>
-            </article>
-        </section>
-        <section class="main-section" id="Levantando_el_estado">
-            <header>Levantando el estado</header>
-            <article>
-                <p></p>
-            </article>
-        </section>
-        <section class="main-section" id="Composición_vs._herencia">
-            <header>Composición vs. herencia</header>
-            <article>
-                <p></p>
-            </article>
-        </section>
-        <section class="main-section" id="Pensando_en_React">
-            <header>Pensando en React</header>
-            <article>
-                <p></p>
+              <p></p>
             </article>
         </section>
         <section class="main-section" id="Referencia">
