@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color:rgb(3, 10, 117);
+    background-color:#fff;
+}
+#navbar{
+    position: fixed;
+    min-width: 290px;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #ededed;  
+}
+header{
+    margin: 10px;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+#main-doc header{
+    text-align: left;
+    margin: 15px 10px;
+    font-size: 2rem;
+}
+#navbar ul{
+    height: 88%;
+    overflow-y:auto ;
+    overflow-x: hidden ;
+}
+#navbar li{
+    list-style: none;
+    width: 100%;
+    color:rgb(3, 10, 117);
+    margin-left: 10px;
+}
+#navbar a{
+    text-decoration: none;
+    color:rgb(3, 10, 117);
+    padding: 10px 20px;
+    display: block;
+    cursor: pointer;
+    font-weight:400;
+}
+#navbar a:hover{
+    font-weight:600;
+}
+
+#main-doc{
+    position: absolute;
+    margin-left: 310px;
+    padding: 20px;
+}
+
+section article{
+    color:black;
+    margin: 10px;
+}
+h2{
+    color:rgb(3, 10, 117) ;
+    margin:10px 0;
+}
+
+code{
+    display: block;
+    text-align: left;
+    white-space: pre-line;
+    border-radius:10px;
+    background-color:rgba(175, 179, 223, 0.863);
+    padding: 10px;
+    margin: 15px 0;
+    word-break: normal;
+    word-wrap: normal;
+    position: relative;
+}
+
+@media only screen and (max-width:815px){
+
+    #navbar ul{
+        height: 190px;
+        border-top: 2px solid rgba(3, 10, 117,0.5) ;
+    }
+    #navbar{
+        position:absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 275px; 
+        z-index: 10;
+    }
+    #main-doc{
+        position: relative;
+        margin-top: 270px;
+        margin-left:10px;
+        padding: 20px;
+    }
+    #main-doc header{
+        padding-top: 10px;
+    } 
+    
+}
+@media only screen and (max-width:400px){
+    #main-doc{
+        
+        margin-left:-10px;
+        padding-left:20px;
+    }
+    code{
+        width: 100%;
+        margin-left: -10px;
+        padding:15px;
+        min-width: 235px;
+    }
+}

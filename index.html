@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Documentation Page</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav id="navbar">
+        <header>React</header>
+        <ul>
+            <li><a class="nav-link" href="#Introducción">Introducción</a></li>
+            <li><a class="nav-link" href="#Hola_mundo">Hola mundo</a></li>
+            <li><a class="nav-link" href="#Presentando_JSX">Presentando JSX</a></li>
+            <li><a class="nav-link" href="#Renderizando_elementos">Renderizando elementos</a></li>
+            <li><a class="nav-link" href="#Componentes_y_propiedades">Componentes y propiedades</a></li>
+            <li><a class="nav-link" href="#Estado_y_ciclo_de_vida">Estado y ciclo de vida</a></li>
+            <li><a class="nav-link" href="#Manejando_eventos">Manejando eventos</a></li>
+            <li><a class="nav-link" href="#Renderizado_condicional">Renderizado condicional</a></li>
+            <li><a class="nav-link" href="#Listas_y_keys">Listas y keys</a></li>
+            <li><a class="nav-link" href="#Formularios">Formularios</a></li>
+            <li><a class="nav-link" href="#Levantando_el_estado">Levantando el estado</a></li>
+            <li><a class="nav-link" href="#Composición_vs._herencia">Composición vs. herencia</a></li>
+            <li><a class="nav-link" href="#Pensando_en_React">Pensando en React</a></li>
+            <li><a class="nav-link" href="#Referencia">Referencia</a></li>
+        </ul>
+    </nav>
+    <main id="main-doc">
+        <section class="main-section" id="Introducción">
+            <header>Introducción</header>
+            <article>
+                <p>React es una biblioteca Javascript para crear interfaces de usuario. Aprende todo de lo que trata React en nuestra página principal o en este tutorial.</p>
+                <p>React te ayuda a crear interfaces de usuario interactivas de forma sencilla. Diseña vistas simples para cada estado en tu aplicación, y React se encargará de actualizar y renderizar de manera eficiente los componentes correctos cuando los datos cambien.</p>
+                <p>Las vistas declarativas hacen que tu código sea más predecible, por lo tanto, fácil de depurar.</p>
+                <p>Crea componentes encapsulados que manejen su propio estado, y conviértelos en interfaces de usuario complejas.Ya que la lógica de los componentes está escrita en JavaScript y no en plantillas, puedes pasar datos de forma sencilla a través de tu aplicación y mantener el estado fuera del DOM.</p>
+                <p></p>
+            </article>
+        </section>
+        <section class="main-section" id="Hola_mundo">
+            <header>Hola mundo</header>
+            <article>
+                <p>El más pequeño de los ejemplos de React se ve así:</p>
+                <code>ReactDOM.render(
+                    <h1>Hello, world!</h1>,
+                    document.getElementById('root')
+                  );</code>
+                <p>Este muestra un encabezado con el texto “Hello, world!” en la página.</p>
+            </article>
+        </section>
+        <section class="main-section" id="Presentando_JSX">
+            <header>Presentando JSX</header>
+            <article>
+                <p>Considera la declaración de esta variable:</p>
+                <code>const element = <h1>Hello, world!</h1>;</code>
+                <p>Esta curiosa sintaxis de etiquetas no es ni un string ni HTML.</p>
+                <p>Se llama JSX, y es una extensión de la sintaxis de JavaScript. Recomendamos usarlo con React para describir cómo debería ser la interfaz de usuario. JSX puede recordarte a un lenguaje de plantillas, pero viene con todo el poder de JavaScript.</p>
+                <p>JSX produce “elementos” de React. Exploraremos como renderizarlos en el DOM en la siguiente sección. A continuación puedes encontrar lo básico de JSX que será necesario para empezar.</p>
+                <h2>¿Por qué JSX?</h2>
+                <p>React acepta el hecho de que la lógica de renderizado está intrínsecamente unida a la lógica de la interfaz de usuario: cómo se manejan los eventos, cómo cambia el estado con el tiempo y cómo se preparan los datos para su visualización.</p>
+                <p>En lugar de separar artificialmente tecnologías poniendo el maquetado y la lógica en archivos separados, React separa intereses con unidades ligeramente acopladas llamadas “componentes” que contienen ambas. Volveremos a los componentes en otra sección, pero si aún no te sientes cómodo maquetando en JS, esta charla podría convencerte de lo contrario.</p>
+                <p>React no requiere usar JSX, pero la mayoría de la gente lo encuentra útil como ayuda visual cuando trabajan con interfaz de usuario dentro del código Javascript. Esto también permite que React muestre mensajes de error o advertencia más útiles.</p>
+                <h2>Insertando expresiones en JSX</h2>
+                <p>En el ejemplo a continuación, declaramos una variable llamada  <span>name</span> y luego la usamos dentro del JSX envolviéndola dentro de llaves:</p>
+                <code>const name = 'Josh Perez';
+                    const element = <h1>Hello, {name}</h1>;
+                    
+                    ReactDOM.render(
+                      element,
+                      document.getElementById('root')
+                    );</code>
+                <p>Puedes poner cualquier expresión de JavaScript dentro de llaves en JSX. Por ejemplo, 2 + 2, user.firstName, o formatName(user) son todas expresiones válidas de Javascript.</p>
+                <p>En el ejemplo a continuación, insertamos el resultado de llamar la función de JavaScript, formatName(user), dentro de un elemento <h1>.</p>
+                <code>function formatName(user) {
+                    return user.firstName + ' ' + user.lastName;
+                  }
+                  
+                  const user = {
+                    firstName: 'Harper',
+                    lastName: 'Perez'
+                  };
+                  
+                  const element = (
+                    <h1>
+                      Hello, {formatName(user)}!
+                    </h1>
+                  );
+                  
+                  ReactDOM.render(
+                    element,
+                    document.getElementById('root')
+                  );</code>
+                  <h2>JSX también es una expresión</h2>
+                  <p>Después de compilarse, las expresiones JSX se convierten en llamadas a funciones JavaScript regulares y se evalúan en objetos JavaScript.</p>
+                  <p>Esto significa que puedes usar JSX dentro de declaraciones <span>if</span> y bucles <span>for</span>, asignarlo a variables, aceptarlo como argumento, y retornarlo desde dentro de funciones:</p>
+                  <code>function getGreeting(user) {
+                    if (user) {
+                      return <h1>Hello, {formatName(user)}!</h1>;
+                    }
+                    return <h1>Hello, Stranger.</h1>;
+                  }</code>
+                  <h2>Especificando atributos con JSX</h2>
+                  <p>Puedes utilizar comillas para especificar strings literales como atributos:</p>
+                  <code>const element = <span><</span><span>div</span> tabIndex="0"<span>></span><span><</span><span>/</span><span>div</span><span>></span>;</code>
+                  <p>También puedes usar llaves para insertar una expresión JavaScript en un atributo:</p>
+                  <p>No pongas comillas rodeando llaves cuando insertes una expresión JavaScript en un atributo. Debes utilizar comillas (para los valores de los strings) o llaves (para las expresiones), pero no ambas en el mismo atributo.</p>
+                </article>
+            </section>
+            <section class="main-section" id="Renderizando_elementos">
+                <header>Renderizando elementos</header>
+            <article>
+                <code>const element = <span><</span><span>imag</span> src={user.avatarUrl}<span>></span><span><</span><span>/</span><span>img</span><span>></span>;</code>
+                <h3>Los elementos son los bloques más pequeños de las aplicaciones de React.</h3>
+                <p>Un elemento describe lo que quieres ver en la pantalla:</p>
+                <code>const element = <h1>Hello, world</h1>;</code>
+                <p>A diferencia de los elementos del DOM de los navegadores, los elementos de React son objetos planos, y su creación es de bajo costo. React DOM se encarga de actualizar el DOM para igualar los elementos de React.</p>
+                <h2>Renderizando un elemento en el DOM</h2>
+                <p>Digamos que hay un <div> en alguna parte de tu archivo HTML:</p>
+                <code><div id="root"></div></code>
+                <p>Lo llamamos un nodo “raíz” porque todo lo que esté dentro de él será manejado por React DOM.</p>
+                <p>Las aplicaciones construidas solamente con React usualmente tienen un único nodo raíz en el DOM. Dado el caso que estés integrando React en una aplicación existente, puedes tener tantos nodos raíz del DOM aislados como quieras.</p>
+                <p>Para renderizar un elemento de React en un nodo raíz del DOM, pasa ambos a ReactDOM.render():</p>
+                <code>const element = <h1>Hello, world</h1>;
+                    ReactDOM.render(element, document.getElementById('root'));</code>
+                <h2>Actualizando el elemento renderizado</h2>
+                <p>Los elementos de React son inmutables. Una vez creas un elemento, no puedes cambiar sus hijos o atributos. Un elemento es como un fotograma solitario en una película: este representa la interfaz de usuario en cierto punto en el tiempo.</p>
+                <p>Con nuestro conocimiento hasta este punto, la única manera de actualizar la interfaz de usuario es creando un nuevo elemento, y pasarlo a ReactDOM.render().</p>
+                <p>Considera este ejemplo de un reloj en marcha:</p>
+                <code>function tick() {
+                    const element = (
+                      <div>
+                        <h1>Hello, world!</h1>
+                        <h2>It is {new Date().toLocaleTimeString()}.</h2>
+                      </div>
+                    );
+                    ReactDOM.render(element, document.getElementById('root'));
+                  }
+                  
+                  setInterval(tick, 1000);</code>
+            </article>
+        </section>
+        <section class="main-section" id="Componentes_y_propiedades">
+            <header>Componentes y propiedades</header>
+            <article>
+                <p>Los componentes permiten separar la interfaz de usuario en piezas independientes, reutilizables y pensar en cada pieza de forma aislada. Esta página proporciona una introducción a la idea de los componentes. Puedes encontrar una API detallada sobre componentes aquí.</p>
+                <p>Conceptualmente, los componentes son como las funciones de JavaScript. Aceptan entradas arbitrarias (llamadas “props”) y devuelven a React elementos que describen lo que debe aparecer en la pantalla.</p>
+                <h2>Componentes funcionales y de clase</h2>
+                <p>La forma más sencilla de definir un componente es escribir una función de JavaScript:</p>
+                <code>function Welcome(props) {
+                    return <h1>Hello, {props.name}</h1>;
+                  }</code>
+                <p>Esta función es un componente de React válido porque acepta un solo argumento de objeto “props” (que proviene de propiedades) con datos y devuelve un elemento de React. Llamamos a dichos componentes “funcionales” porque literalmente son funciones JavaScript.También puedes utilizar una clase de ES6 para definir un componente:</p>
+                <code>class Welcome extends React.Component {
+                    render() {
+                      return <h1>Hello, {this.props.name}</h1>;
+                    }
+                  }</code>
+                <p>Los dos componentes anteriores son equivalentes desde el punto de vista de React.Tanto los componentes de función como de clase tienen algunas características adicionales que veremos en las próximas secciones.</p>
+                <h2>Renderizando un componente</h2>
+                <p>Anteriormente, sólo encontramos elementos de React que representan las etiquetas del DOM:</p>
+                <code>const element = <div />;</code>
+                <p>Sin embargo, los elementos también pueden representar componentes definidos por el usuario:</p>
+                <code>const element = <Welcome name="Sara" />;</code>
+                <p>Cuando React ve un elemento representando un componente definido por el usuario, pasa atributos JSX e hijos a este componente como un solo objeto. Llamamos a este objeto “props”.</p>
+                <p>Por ejemplo, este código muestra “Hello, Sara” en la página:</p>
+                <code>function Welcome(props) {
+                    return <h1>Hello, {props.name}</h1>;
+                  }
+                  
+                  const element = <Welcome name="Sara" />;
+                  ReactDOM.render(
+                    element,
+                    document.getElementById('root')
+                  );</code>
+                <p>Recapitulemos lo que sucede en este ejemplo:</p>
+                <ol>
+                    <li>Llamamos a ReactDOM.render() con el elemento <Welcome name="Sara" />.</li>
+                    <li>React llama al componente Welcome con {name: 'Sara'} como “props”.</li>
+                    <li>Nuestro componente Welcome devuelve un elemento <h1>Hello, Sara</h1> como resultado.</li>
+                    <li>React DOM actualiza eficientemente el DOM para que coincida con <h1>Hello, Sara</h1>.</li>
+                </ol>
+                <h2>Composición de componentes</h2>
+                <p>Los componentes pueden referirse a otros componentes en su salida. Esto nos permite utilizar la misma abstracción de componente para cualquier nivel de detalle. Un botón, un cuadro de diálogo, un formulario, una pantalla: en aplicaciones de React, todos son expresados comúnmente como componentes.</p>
+                <p>Por ejemplo, podemos crear un componente App que renderiza Welcome muchas veces:</p>
+                <code>function Welcome(props) {
+                    return <h1>Hello, {props.name}</h1>;
+                  }
+                  
+                  function App() {
+                    return (
+                      <div>
+                        <Welcome name="Sara" />
+                        <Welcome name="Cahal" />
+                        <Welcome name="Edite" />
+                      </div>
+                    );
+                  }
+                  
+                  ReactDOM.render(
+                    <App />,
+                    document.getElementById('root')
+                  );</code>
+                <p>Por lo general, las aplicaciones de React nuevas tienen un único componente App en lo más alto. Sin embargo, si se integra React en una aplicación existente, se podría empezar de abajo hacia arriba con un pequeño componente como Button y poco a poco trabajar el camino a la cima de la jerarquía de la vista.</p>
+                <h2>Extracción de componentes</h2>
+                <p>Por ejemplo, considera este componente Comment:</p>
+                <code>function Comment(props) {
+                    return (
+                      <div className="Comment">
+                        <div className="UserInfo">
+                          <img className="Avatar"
+                            src={props.author.avatarUrl}
+                            alt={props.author.name}
+                          />
+                          <div className="UserInfo-name">
+                            {props.author.name}
+                          </div>
+                        </div>
+                        <div className="Comment-text">
+                          {props.text}
+                        </div>
+                        <div className="Comment-date">
+                          {formatDate(props.date)}
+                        </div>
+                      </div>
+                    );
+                  }</code>
+            </article>
+        </section>
+        <section class="main-section" id="Estado_y_ciclo_de_vida">
+            <header>Estado y ciclo de vida</header>
+            <article>
+                <p></p>
+            </article>
+        </section>
+        <section class="main-section" id="Manejando_eventos">
+            <header>Manejando eventos</header>
+            <article>
+                <p></p>
+            </article>
+        </section>
+        <section class="main-section" id="Renderizado_condicional">
+            <header>Renderizado condicional</header>
+            <article>
+                <p></p>
+            </article>
+        </section>
+        <section class="main-section" id="Listas_y_keys">
+            <header>Listas y keys</header>
+            <article>
+                <p></p>
+            </article>
+        </section>
+        <section class="main-section" id="Formularios">
+            <header>Formularios</header>
+            <article>
+                <p></p>
+            </article>
+        </section>
+        <section class="main-section" id="Levantando_el_estado">
+            <header>Levantando el estado</header>
+            <article>
+                <p></p>
+            </article>
+        </section>
+        <section class="main-section" id="Composición_vs._herencia">
+            <header>Composición vs. herencia</header>
+            <article>
+                <p></p>
+            </article>
+        </section>
+        <section class="main-section" id="Pensando_en_React">
+            <header>Pensando en React</header>
+            <article>
+                <p></p>
+            </article>
+        </section>
+        <section class="main-section" id="Referencia">
+            <header>Referencia</header>
+            <article><a href="https://es.reactjs.org/docs/getting-started.html" target="_blank">React</a></article>
+        </section>
+
+    </main>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+</html>
